@@ -1,14 +1,16 @@
 using System.Text;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-
+using System.Net.Http;
+using System.Threading.Tasks;
 namespace Translation.Services.Translations;
-using Translation.Model.Core;
+
 using Translation.Model.Translations;
 
 public class ConnectToRemote : TranslationConfiguration
 {
-    private RemoteType _remoteType;
     private string _fromLanguageCode;
     public ICollection<string> ToLanguageCode = new HashSet<string>();
     public ConnectToRemote(string fromLanguageCode) => _fromLanguageCode = fromLanguageCode;
@@ -44,6 +46,7 @@ public class ConnectToRemote : TranslationConfiguration
             return responses;
         }
     }
+    
     /// <summary>
     /// Set the target language code
     /// </summary>
