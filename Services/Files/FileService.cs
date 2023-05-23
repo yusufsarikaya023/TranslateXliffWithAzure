@@ -77,7 +77,9 @@ public class FileService
                 {
                     var node = nodeItem.ChildNodes;
                     enumarator.MoveNext();
-                    node.Item(0).InnerText = enumarator.Current.FirstOrDefault(x => x.To == code).Text;
+                    XmlNode newNode = doc.CreateElement("target", doc.DocumentElement.NamespaceURI);
+                    newNode.InnerText = enumarator.Current.FirstOrDefault(x => x.To == code)!.Text;
+                    node[0].ParentNode.InsertAfter(newNode, node[0]);
                 }
                 var b = doc?.DocumentType;
             }
